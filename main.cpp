@@ -17,7 +17,7 @@ public:
     double getPrecio() { return precio; }
 };
 
-// Clases derivadas
+// Clase Libro
 class Libro : public Producto {
 private:
     string autor, editorial, genero, isbn;
@@ -32,6 +32,57 @@ public:
     }
 
     string obtenerTipo() override { return "Libro"; }
+};
+
+// Clase CD
+class CD : public Producto {
+private:
+    string artista, genero;
+    int canciones;
+
+public:
+    CD(string t, double p, string ar, string g, int c)
+        : Producto(t, p), artista(ar), genero(g), canciones(c) {}
+
+    void mostrarDatos() override {
+        cout << "CD: " << titulo << ", Artista: " << artista << ", Precio: " << precio << "€\n";
+    }
+
+    string obtenerTipo() override { return "CD"; }
+};
+
+// Clase DVD
+class DVD : public Producto {
+private:
+    string director, genero;
+    int duracion;
+
+public:
+    DVD(string t, double p, string d, string g, int dur)
+        : Producto(t, p), director(d), genero(g), duracion(dur) {}
+
+    void mostrarDatos() override {
+        cout << "DVD: " << titulo << ", Director: " << director << ", Precio: " << precio << "€\n";
+    }
+
+    string obtenerTipo() override { return "DVD"; }
+};
+
+// Clase Juego de PlayStation
+class JuegoPlayStation : public Producto {
+private:
+    string desarrollador, genero, plataforma;
+    int edadRecomendada;
+
+public:
+    JuegoPlayStation(string t, double p, string d, string g, string plat, int edad)
+        : Producto(t, p), desarrollador(d), genero(g), plataforma(plat), edadRecomendada(edad) {}
+
+    void mostrarDatos() override {
+        cout << "Juego de PlayStation: " << titulo << ", Desarrollador: " << desarrollador << ", Precio: " << precio << "€\n";
+    }
+
+    string obtenerTipo() override { return "JuegoPlayStation"; }
 };
 
 // Clase para gestionar la base de datos
@@ -64,76 +115,6 @@ public:
     }
 };
 
-// Función para agregar un libro
-void agregarProducto(GestorBD &gestor) {
-    string titulo, autor, editorial, genero, isbn;
-    int paginas;
-    double precio;
-
-    cout << "Título: ";
-    cin >> titulo;
-    cout << "Autor: ";
-    cin >> autor;
-    cout << "Editorial: ";
-    cin >> editorial;
-    cout << "Género: ";
-    cin >> genero;
-    cout << "ISBN: ";
-    cin >> isbn;
-    cout << "Número de páginas: ";
-    cin >> paginas;
-    cout << "Precio: ";
-    cin >> precio;
-
-    Libro nuevoLibro(titulo, precio, autor, editorial, genero, isbn, paginas);
-
-    string query = "INSERT INTO Libro (titulo, autor, editorial, genero, isbn, paginas, precio) VALUES ('" +
-                   titulo + "','" + autor + "','" + editorial + "','" + genero + "','" + isbn + "'," +
-                   to_string(paginas) + "," + to_string(precio) + ")";
-
-    if (gestor.ejecutarConsulta(query))
-        cout << "Libro agregado correctamente.\n";
-    else
-        cout << "Error al agregar el libro.\n";
-}
-
-// Función para consultar productos
-void consultarProductos(GestorBD &gestor) {
-    string query = "SELECT * FROM Libro";
-    if (gestor.ejecutarConsulta(query))
-        cout << "Consulta realizada correctamente.\n";
-    else
-        cout << "Error al realizar la consulta.\n";
-}
-
-// Función para modificar un producto
-void modificarProducto(GestorBD &gestor) {
-    string titulo, nuevoPrecio;
-    cout << "Introduce el título del producto a modificar: ";
-    cin >> titulo;
-    cout << "Introduce el nuevo precio: ";
-    cin >> nuevoPrecio;
-
-    string query = "UPDATE Libro SET precio = " + nuevoPrecio + " WHERE titulo = '" + titulo + "'";
-    if (gestor.ejecutarConsulta(query))
-        cout << "Producto modificado correctamente.\n";
-    else
-        cout << "Error al modificar el producto.\n";
-}
-
-// Función para eliminar un producto
-void eliminarProducto(GestorBD &gestor) {
-    string titulo;
-    cout << "Introduce el título del producto a eliminar: ";
-    cin >> titulo;
-
-    string query = "DELETE FROM Libro WHERE titulo = '" + titulo + "'";
-    if (gestor.ejecutarConsulta(query))
-        cout << "Producto eliminado correctamente.\n";
-    else
-        cout << "Error al eliminar el producto.\n";
-}
-
 // Menú principal
 int main() {
     GestorBD gestor;
@@ -146,16 +127,20 @@ int main() {
 
         switch (opcion) {
         case 1:
-            agregarProducto(gestor);
-            break;
-        case 2:
-            consultarProductos(gestor);
-            break;
-        case 3:
-            modificarProducto(gestor);
-            break;
-        case 4:
-            eliminarProducto(gestor);
+            cout << "Seleccione el tipo de producto:\n1. Libro\n2. CD\n3. DVD\n4. Juego de PlayStation\n";
+            int tipo;
+            cin >> tipo;
+            if (tipo == 1) {
+                // Aquí llamaríamos a la función para agregar Libro (a completar)
+            } else if (tipo == 2) {
+                // Aquí llamaríamos a la función para agregar CD (a completar)
+            } else if (tipo == 3) {
+                // Aquí llamaríamos a la función para agregar DVD (a completar)
+            } else if (tipo == 4) {
+                // Aquí llamaríamos a la función para agregar Juego de PlayStation (a completar)
+            } else {
+                cout << "Tipo de producto no válido.\n";
+            }
             break;
         case 5:
             cout << "Saliendo del sistema...\n";
