@@ -1,30 +1,30 @@
 INSERT INTO Libro (titulo, autor, editorial, genero, isbn, paginas, precio) 
 VALUES 
-('Cien años de soledad', 'Gabriel García Márquez', 'Sudamericana', 'Novela', '978-3-16-148410-0', 432, 18.50),
-('1984', 'George Orwell', 'Secker & Warburg', 'Distopía', '978-0-452-28423-4', 328, 15.99),
-('El Principito', 'Antoine de Saint-Exupéry', 'Gallimard', 'Fábula', '978-0-123-45678-9', 96, 10.50),
-('Don Quijote de la Mancha', 'Miguel de Cervantes', 'Francisco de Robles', 'Novela', '978-84-376-0494-7', 863, 22.75),
-('La sombra del viento', 'Carlos Ruiz Zafón', 'Planeta', 'Misterio', '978-84-080-8632-0', 560, 19.95);
+('La belleza del objeto cotidiano', 'Soetsu Yanagi', 'gg', 'Ensayo diseño', '9788425232985', 240, 14.15),
+('1984', 'George Orwell', 'Secker & Warburg', 'Distopía', '9780452284234', 328, 15.99),
+('Momentos estelares de la humanidad', 'Stefan Zweig', 'Acantilado', 'Ensayo histórico', '9788495359926', 96, 18.50),
+('Don Quijote de la Mancha', 'Miguel de Cervantes', 'Francisco de Robles', 'Novela', '9788437604947', 863, 22.75),
+('El rey Lear', 'William Shakespeare', 'Austral', 'Tragedia', '9788467028423', 208, 7.55);
 
 --
 
 INSERT INTO CD (titulo, artista, genero, canciones, precio) 
 VALUES 
-('Thriller', 'Michael Jackson', 'Pop', 9, 12.99),
+('Yo, minoría absoluta', 'Extremoduro ', 'Rock', 10, 8,99),
 ('Back in Black', 'AC/DC', 'Rock', 10, 14.99),
-('The Dark Side of the Moon', 'Pink Floyd', 'Rock', 10, 13.50),
-('Rumours', 'Fleetwood Mac', 'Rock', 11, 11.99),
-('Abbey Road', 'The Beatles', 'Rock', 17, 15.99);
+('the number of the beast', 'Iron Maiden', 'Heavy Metal', 8, 14.99),
+('jugar al gua', 'Rosendo', 'Rock', 9, 21,99),
+('Ciudad de las ideas', 'Vicente Amigo', 'Flamenco', 8, 17.99);
 
 --
 
 INSERT INTO DVD (titulo, director, genero, duracion, precio) 
 VALUES 
 ('El Padrino', 'Francis Ford Coppola', 'Crimen', 175, 9.99),
-('Matrix', 'Lana Wachowski', 'Ciencia Ficción', 136, 11.99),
-('Inception', 'Christopher Nolan', 'Ciencia Ficción', 148, 10.99),
-('Forrest Gump', 'Robert Zemeckis', 'Drama', 142, 8.99),
-('The Lord of the Rings: The Fellowship of the Ring', 'Peter Jackson', 'Fantasía', 178, 12.99);
+('Ciudad de Dios', 'Fernando Meirelles', 'Drama', 129, 5.99),
+('Memorias de un asesino', 'Bong Joon Ho', 'Crimen', 131, 10.99),
+('La Haine', 'Dramathieu Kassovitz', 'Drama', 98, 12,99),
+('Trainspotting', 'Danny Boyle', 'Drama', 94, 9.99);
 
 --
 
