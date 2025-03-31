@@ -1,5 +1,5 @@
 #include <iostream>
-#include <mysql/mysql.h>
+#include <mysql.h>
 #include <string>
 using namespace std;
 
@@ -85,7 +85,6 @@ public:
     string obtenerTipo() override { return "JuegoPlayStation"; }
 };
 
-// Clase para gestionar la base de datos
 class GestorBD {
 private:
     MYSQL* conn;
@@ -93,8 +92,7 @@ private:
 public:
     GestorBD() {
         conn = mysql_init(0);
-        conn = mysql_real_connect(conn, "localhost", "root", "password", "libreria_multimedia", 3306, NULL, 0);
-
+        conn = mysql_real_connect(conn, "10.20.40.75", "", "", "", 3306, NULL, 0);
         if (conn)
             cout << "Conexión exitosa a la base de datos.\n";
         else
@@ -122,7 +120,7 @@ int main() {
     int opcion;
     do {
         cout << "\n1. Agregar producto\n2. Consultar productos\n3. Modificar producto\n4. Eliminar producto\n5. Salir\n";
-        cout << "Seleccione una opción: ";
+        cout << "Seleccione una opcion: ";
         cin >> opcion;
 
         switch (opcion) {
@@ -131,14 +129,18 @@ int main() {
             int tipo;
             cin >> tipo;
             if (tipo == 1) {
-                // Aquí llamaríamos a la función para agregar Libro (a completar)
-            } else if (tipo == 2) {
-                // Aquí llamaríamos a la función para agregar CD (a completar)
-            } else if (tipo == 3) {
-                // Aquí llamaríamos a la función para agregar DVD (a completar)
-            } else if (tipo == 4) {
-                // Aquí llamaríamos a la función para agregar Juego de PlayStation (a completar)
-            } else {
+                // para agregar Libro (a completar)
+            }
+            else if (tipo == 2) {
+                //  para agregar CD (a completar)
+            }
+            else if (tipo == 3) {
+                // función para agregar DVD (a completar)
+            }
+            else if (tipo == 4) {
+                // función para agregar Juego (a completar)
+            }
+            else {
                 cout << "Tipo de producto no válido.\n";
             }
             break;
