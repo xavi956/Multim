@@ -6,27 +6,21 @@ VALUES
 ('Don Quijote de la Mancha', 'Miguel de Cervantes', 'Francisco de Robles', 'Novela', '9788437604947', 863, 22.75),
 ('El rey Lear', 'William Shakespeare', 'Austral', 'Tragedia', '9788467028423', 208, 7.55);
 
---
-
 INSERT INTO CD (titulo, artista, genero, canciones, precio) 
 VALUES 
-('Yo, minoría absoluta', 'Extremoduro ', 'Rock', 10, 8,99),
+('Yo, minoría absoluta', 'Extremoduro', 'Rock', 10, 8.99),
 ('Back in Black', 'AC/DC', 'Rock', 10, 14.99),
-('the number of the beast', 'Iron Maiden', 'Heavy Metal', 8, 14.99),
-('jugar al gua', 'Rosendo', 'Rock', 9, 21,99),
-('Shadows', 'Chirie Vegas', 'Rap', 8, 17.99);
-
---
+('The Number of the Beast', 'Iron Maiden', 'Heavy Metal', 8, 14.99),
+('Jugar al gua', 'Rosendo', 'Rock', 9, 21.99),
+('Ciudad de las ideas', 'Vicente Amigo', 'Flamenco', 8, 17.99);
 
 INSERT INTO DVD (titulo, director, genero, duracion, precio) 
 VALUES 
 ('El Padrino', 'Francis Ford Coppola', 'Crimen', 175, 9.99),
 ('Ciudad de Dios', 'Fernando Meirelles', 'Drama', 129, 5.99),
 ('Memorias de un asesino', 'Bong Joon Ho', 'Crimen', 131, 10.99),
-('La Haine', 'Dramathieu Kassovitz', 'Drama', 98, 12,99),
+('La Haine', 'Mathieu Kassovitz', 'Drama', 98, 12.99),
 ('Trainspotting', 'Danny Boyle', 'Drama', 94, 9.99);
-
---
 
 INSERT INTO JuegoPlayStation (titulo, desarrollador, genero, plataforma, edadRecomendada, precio) 
 VALUES 
