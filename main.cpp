@@ -1,8 +1,9 @@
 #include <iostream>
-#include <mysql/mysql.h>
+#include <mysql.h>
 #include <string>
 using namespace std;
 
+// Clase base Producto
 class Producto {
 protected:
     string titulo;
@@ -16,7 +17,74 @@ public:
     double getPrecio() { return precio; }
 };
 
-// Clase para gestionar la base de datos
+// Clase Libro
+class Libro : public Producto {
+private:
+    string autor, editorial, genero, isbn;
+    int paginas;
+
+public:
+    Libro(string t, double p, string a, string e, string g, string i, int pag)
+        : Producto(t, p), autor(a), editorial(e), genero(g), isbn(i), paginas(pag) {}
+
+    void mostrarDatos() override {
+        cout << "Libro: " << titulo << ", Autor: " << autor << ", Precio: " << precio << "€\n";
+    }
+
+    string obtenerTipo() override { return "Libro"; }
+};
+
+// Clase CD
+class CD : public Producto {
+private:
+    string artista, genero;
+    int canciones;
+
+public:
+    CD(string t, double p, string ar, string g, int c)
+        : Producto(t, p), artista(ar), genero(g), canciones(c) {}
+
+    void mostrarDatos() override {
+        cout << "CD: " << titulo << ", Artista: " << artista << ", Precio: " << precio << "€\n";
+    }
+
+    string obtenerTipo() override { return "CD"; }
+};
+
+// Clase DVD
+class DVD : public Producto {
+private:
+    string director, genero;
+    int duracion;
+
+public:
+    DVD(string t, double p, string d, string g, int dur)
+        : Producto(t, p), director(d), genero(g), duracion(dur) {}
+
+    void mostrarDatos() override {
+        cout << "DVD: " << titulo << ", Director: " << director << ", Precio: " << precio << "€\n";
+    }
+
+    string obtenerTipo() override { return "DVD"; }
+};
+
+// Clase Juego de PlayStation
+class JuegoPlayStation : public Producto {
+private:
+    string desarrollador, genero, plataforma;
+    int edadRecomendada;
+
+public:
+    JuegoPlayStation(string t, double p, string d, string g, string plat, int edad)
+        : Producto(t, p), desarrollador(d), genero(g), plataforma(plat), edadRecomendada(edad) {}
+
+    void mostrarDatos() override {
+        cout << "Juego de PlayStation: " << titulo << ", Desarrollador: " << desarrollador << ", Precio: " << precio << "€\n";
+    }
+
+    string obtenerTipo() override { return "JuegoPlayStation"; }
+};
+
 class GestorBD {
 private:
     MYSQL* conn;
@@ -24,8 +92,7 @@ private:
 public:
     GestorBD() {
         conn = mysql_init(0);
-        conn = mysql_real_connect(conn, "localhost", "root", "password", "libreria_multimedia", 3306, NULL, 0);
-
+        conn = mysql_real_connect(conn, "10.20.40.75", "", "", "", 3306, NULL, 0);
         if (conn)
             cout << "Conexión exitosa a la base de datos.\n";
         else
@@ -41,46 +108,6 @@ public:
         }
     }
 
-    void agregarLibro() {
-        string titulo, autor, editorial, genero, isbn;
-        int paginas;
-        double precio;
-
-        cout << "Ingrese título: "; cin.ignore(); getline(cin, titulo);
-        cout << "Ingrese autor: "; getline(cin, autor);
-        cout << "Ingrese editorial: "; getline(cin, editorial);
-        cout << "Ingrese género: "; getline(cin, genero);
-        cout << "Ingrese ISBN: "; getline(cin, isbn);
-        cout << "Ingrese número de páginas: "; cin >> paginas;
-        cout << "Ingrese precio: "; cin >> precio;
-
-        string consulta = "INSERT INTO Libro (titulo, autor, editorial, genero, isbn, paginas, precio) VALUES ('" + titulo + "', '" + autor + "', '" + editorial + "', '" + genero + "', '" + isbn + "', " + to_string(paginas) + ", " + to_string(precio) + ")";
-
-        if (ejecutarConsulta(consulta)) {
-            cout << "Libro agregado correctamente.\n";
-        }
-    }
-
-    void consultarLibros() {
-        if (mysql_query(conn, "SELECT * FROM Libro")) {
-            cerr << "Error en la consulta: " << mysql_error(conn) << endl;
-            return;
-        }
-
-        MYSQL_RES* res = mysql_store_result(conn);
-        if (!res) {
-            cerr << "Error al obtener los resultados.\n";
-            return;
-        }
-
-        MYSQL_ROW row;
-        cout << "\nLibros disponibles:\n";
-        while ((row = mysql_fetch_row(res))) {
-            cout << "ID: " << row[0] << " | Título: " << row[1] << " | Autor: " << row[2] << " | Editorial: " << row[3] << " | Género: " << row[4] << " | ISBN: " << row[5] << " | Páginas: " << row[6] << " | Precio: " << row[7] << "€\n";
-        }
-        mysql_free_result(res);
-    }
-
     ~GestorBD() {
         mysql_close(conn);
     }
@@ -92,25 +119,39 @@ int main() {
 
     int opcion;
     do {
-        cout << "\n1. Agregar libro\n2. Consultar libros\n3. Salir\n";
-        cout << "Seleccione una opción: ";
+        cout << "\n1. Agregar producto\n2. Consultar productos\n3. Modificar producto\n4. Eliminar producto\n5. Salir\n";
+        cout << "Seleccione una opcion: ";
         cin >> opcion;
 
         switch (opcion) {
         case 1:
-            gestor.agregarLibro();
+            cout << "Seleccione el tipo de producto:\n1. Libro\n2. CD\n3. DVD\n4. Juego de PlayStation\n";
+            int tipo;
+            cin >> tipo;
+            if (tipo == 1) {
+                // para agregar Libro (a completar)
+            }
+            else if (tipo == 2) {
+                //  para agregar CD (a completar)
+            }
+            else if (tipo == 3) {
+                // función para agregar DVD (a completar)
+            }
+            else if (tipo == 4) {
+                // función para agregar Juego (a completar)
+            }
+            else {
+                cout << "Tipo de producto no válido.\n";
+            }
             break;
-        case 2:
-            gestor.consultarLibros();
-            break;
-        case 3:
+        case 5:
             cout << "Saliendo del sistema...\n";
             break;
         default:
             cout << "Opción no válida.\n";
         }
 
-    } while (opcion != 3);
+    } while (opcion != 5);
 
     return 0;
 }
