@@ -14,7 +14,7 @@ VALUES
 ('Back in Black', 'AC/DC', 'Rock', 10, 14.99),
 ('the number of the beast', 'Iron Maiden', 'Heavy Metal', 8, 14.99),
 ('jugar al gua', 'Rosendo', 'Rock', 9, 21,99),
-('Ciudad de las ideas', 'Vicente Amigo', 'Flamenco', 8, 17.99);
+('Shadows', 'Chirie Vegas', 'Rap', 8, 17.99);
 
 --
 
