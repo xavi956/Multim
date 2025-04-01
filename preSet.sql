@@ -22,10 +22,10 @@ VALUES
 ('La Haine', 'Mathieu Kassovitz', 'Drama', 98, 12.99),
 ('Trainspotting', 'Danny Boyle', 'Drama', 94, 9.99);
 
-INSERT INTO JuegoPlayStation (titulo, desarrollador, genero, plataforma, edadRecomendada, precio) 
-VALUES 
-('The Last of Us', 'Naughty Dog', 'Aventura', 'PS4', 18, 49.99),
-('God of War', 'Santa Monica Studio', 'Acción', 'PS5', 18, 59.99),
-('Uncharted 4', 'Naughty Dog', 'Acción/Aventura', 'PS4', 16, 39.99),
-('Spider-Man', 'Insomniac Games', 'Acción', 'PS4', 16, 44.99),
+INSERT INTO JuegoPlayStation (titulo, desarrollador, genero, plataforma, edad_Recomendada, precio)  
+VALUES  
+('The Last of Us', 'Naughty Dog', 'Aventura', 'PS4', 18, 49.99),  
+('God of War', 'Santa Monica Studio', 'Acción', 'PS5', 18, 59.99),  
+('Uncharted 4', 'Naughty Dog', 'Acción/Aventura', 'PS4', 16, 39.99),  
+('Spider-Man', 'Insomniac Games', 'Acción', 'PS4', 16, 44.99),  
 ('Horizon Zero Dawn', 'Guerrilla Games', 'Acción/RPG', 'PS4', 16, 34.99);
