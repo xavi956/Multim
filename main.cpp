@@ -3,7 +3,6 @@
 #include <string>
 using namespace std;
 
-// Clase base Producto
 class Producto {
 protected:
     string titulo;
