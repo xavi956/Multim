@@ -144,6 +144,41 @@ void consultarProductos(GestorBD& gestor) {
     mysql_free_result(resultado);
 }
 
+void eliminarProducto(GestorBD& gestor) {
+    cout << "Seleccione el tipo de producto a borrar:\n1. Libro\n2. CD\n3. DVD\n4. Juego de PlayStation\n";
+    int tipo;
+    cin >> tipo;
+
+    string tabla;
+    if (tipo == 1) tabla = "Libro";
+    else if (tipo == 2) tabla = "CD";
+    else if (tipo == 3) tabla = "DVD";
+    else if (tipo == 4) tabla = "JuegoPlayStation";
+    else {
+        cout << "Tipo de producto no válido.\n";
+        return;
+    }
+
+    string consulta = "SELECT * FROM " + tabla;
+    MYSQL_RES* resultado = gestor.ejecutarConsultaSelect(consulta);
+    if (!resultado) return;
+
+    MYSQL_ROW fila;
+    while ((fila = mysql_fetch_row(resultado))) {
+        for (int i = 0; i < mysql_num_fields(resultado); i++) {
+            cout << (fila[i] ? fila[i] : "NULL") << " | ";
+        }
+        cout << endl;
+    }
+    mysql_free_result(resultado);
+    cout << "Seleccione el producto a borrar(id): ";
+    string id;
+    cin >> id;
+    string borrar = "DELETE FROM" + tabla + "WHERE product_id="+id+";";
+    MYSQL_RES* resultado = gestor.ejecutarConsultaSelect(borrar);
+    if (!resultado) return;
+}
+
 // Menú principal
 int main() {
     GestorBD gestor;
@@ -159,6 +194,9 @@ int main() {
             break;
         case 2:
             consultarProductos(gestor);
+            break;
+        case 3:
+            eliminarProducto(gestor);
             break;
         case 5:
             cout << "Saliendo del sistema...\n";
