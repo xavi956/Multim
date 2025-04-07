@@ -29,7 +29,7 @@ public:
         : Producto(t, p), autor(a), editorial(e), genero(g), isbn(i), paginas(pag) {}
 
     void mostrarDatos() override {
-        cout << "Libro: " << titulo << ", Autor: " << autor << ", Precio: " << precio << "\u20ac\n";
+        cout << "Libro: " << titulo << ", Autor: " << autor << ", Precio: " << precio << "€\n";
     }
 
     string obtenerTipo() override { return "Libro"; }
@@ -46,7 +46,7 @@ public:
         : Producto(t, p), artista(a), genero(g), canciones(n) {}
 
     void mostrarDatos() override {
-        cout << "CD: " << titulo << ", Artista: " << artista << ", Precio: " << precio << "\u20ac\n";
+        cout << "CD: " << titulo << ", Artista: " << artista << ", Precio: " << precio << "€\n";
     }
 
     string obtenerTipo() override { return "CD"; }
@@ -63,7 +63,7 @@ public:
         : Producto(t, p), director(d), genero(g), duracion(dur) {}
 
     void mostrarDatos() override {
-        cout << "DVD: " << titulo << ", Director: " << director << ", Duraci\u00f3n: " << duracion << " min, Precio: " << precio << "\u20ac\n";
+        cout << "DVD: " << titulo << ", Director: " << director << ", Duración: " << duracion << " min, Precio: " << precio << "€\n";
     }
 
     string obtenerTipo() override { return "DVD"; }
@@ -82,7 +82,7 @@ public:
     void mostrarDatos() override {
         cout << "Juego PS: " << titulo << ", Desarrollador: " << desarrollador
              << ", Plataforma: " << plataforma << ", Edad Recomendada: " << edadRecomendada
-             << ", Precio: " << precio << "\u20ac\n";
+             << ", Precio: " << precio << "€\n";
     }
 
     string obtenerTipo() override { return "JuegoPlayStation"; }
@@ -99,9 +99,9 @@ public:
         conn = mysql_real_connect(conn, "10.20.40.75", "user09", "Uab98134", "user09_db", 3306, NULL, 0);
         mysql_set_character_set(conn, "utf8");
         if (conn)
-            cout << "Conexi\u00f3n exitosa a la base de datos.\n";
+            cout << "Conexión exitosa a la base de datos.\n";
         else
-            cout << "Error de conexi\u00f3n a la base de datos.\n";
+            cout << "Error de conexión a la base de datos.\n";
     }
 
     bool ejecutarConsulta(string consulta) {
@@ -139,12 +139,12 @@ void agregarProducto(GestorBD& gestor) {
     if (tipo == 1) {
         string autor, editorial, isbn;
         int paginas;
-        cout << "Ingrese t\u00edtulo: "; getline(cin, titulo);
+        cout << "Ingrese título: "; getline(cin, titulo);
         cout << "Ingrese autor: "; getline(cin, autor);
         cout << "Ingrese editorial: "; getline(cin, editorial);
-        cout << "Ingrese g\u00e9nero: "; getline(cin, genero);
+        cout << "Ingrese género: "; getline(cin, genero);
         cout << "Ingrese ISBN: "; getline(cin, isbn);
-        cout << "Ingrese n\u00famero de p\u00e1ginas: "; cin >> paginas;
+        cout << "Ingrese número de páginas: "; cin >> paginas;
         cout << "Ingrese precio: "; cin >> precio;
 
         string consulta = "INSERT INTO Libro (titulo, autor, editorial, genero, isbn, paginas, precio) VALUES ('" +
@@ -156,10 +156,10 @@ void agregarProducto(GestorBD& gestor) {
     else if (tipo == 2) {
         string artista;
         int canciones;
-        cout << "Ingrese t\u00edtulo: "; getline(cin, titulo);
+        cout << "Ingrese título: "; getline(cin, titulo);
         cout << "Ingrese artista: "; getline(cin, artista);
-        cout << "Ingrese g\u00e9nero: "; getline(cin, genero);
-        cout << "Ingrese n\u00famero de canciones: "; cin >> canciones;
+        cout << "Ingrese género: "; getline(cin, genero);
+        cout << "Ingrese número de canciones: "; cin >> canciones;
         cout << "Ingrese precio: "; cin >> precio;
 
         string consulta = "INSERT INTO CD (titulo, artista, genero, canciones, precio) VALUES ('" +
@@ -170,10 +170,10 @@ void agregarProducto(GestorBD& gestor) {
     else if (tipo == 3) {
         string director;
         int duracion;
-        cout << "Ingrese t\u00edtulo: "; getline(cin, titulo);
+        cout << "Ingrese título: "; getline(cin, titulo);
         cout << "Ingrese director: "; getline(cin, director);
-        cout << "Ingrese g\u00e9nero: "; getline(cin, genero);
-        cout << "Ingrese duraci\u00f3n en minutos: "; cin >> duracion;
+        cout << "Ingrese género: "; getline(cin, genero);
+        cout << "Ingrese duración en minutos: "; cin >> duracion;
         cout << "Ingrese precio: "; cin >> precio;
 
         string consulta = "INSERT INTO DVD (titulo, director, genero, duracion, precio) VALUES ('" +
@@ -184,9 +184,9 @@ void agregarProducto(GestorBD& gestor) {
     else if (tipo == 4) {
         string desarrollador, plataforma;
         int edad;
-        cout << "Ingrese t\u00edtulo: "; getline(cin, titulo);
+        cout << "Ingrese título: "; getline(cin, titulo);
         cout << "Ingrese desarrollador: "; getline(cin, desarrollador);
-        cout << "Ingrese g\u00e9nero: "; getline(cin, genero);
+        cout << "Ingrese género: "; getline(cin, genero);
         cout << "Ingrese plataforma: "; getline(cin, plataforma);
         cout << "Ingrese edad recomendada: "; cin >> edad;
         cout << "Ingrese precio: "; cin >> precio;
@@ -197,16 +197,136 @@ void agregarProducto(GestorBD& gestor) {
             cout << "Juego agregado correctamente.\n";
     }
     else {
-        cout << "Opcion no v\u00e1lida.\n";
+        cout << "Opción no válida.\n";
     }
 }
 
-// main()
+void consultarProductos(GestorBD& gestor) {
+    cout << "Seleccione el tipo de producto a consultar:\n1. Libro\n2. CD\n3. DVD\n4. Juego de PlayStation\n";
+    int tipo;
+    cin >> tipo;
+
+    string tabla;
+    if (tipo == 1) tabla = "Libro";
+    else if (tipo == 2) tabla = "CD";
+    else if (tipo == 3) tabla = "DVD";
+    else if (tipo == 4) tabla = "JuegoPlayStation";
+    else {
+        cout << "Tipo de producto no válido.\n";
+        return;
+    }
+
+    string consulta = "SELECT * FROM " + tabla;
+    MYSQL_RES* resultado = gestor.ejecutarConsultaSelect(consulta);
+    if (!resultado) return;
+
+    MYSQL_ROW fila;
+    while ((fila = mysql_fetch_row(resultado))) {
+        for (int i = 0; i < mysql_num_fields(resultado); i++) {
+            cout << (fila[i] ? fila[i] : "NULL") << " | ";
+        }
+        cout << endl;
+    }
+    mysql_free_result(resultado);
+}
+
+void modificarProducto(GestorBD& gestor) {
+    cout << "Seleccione el tipo de producto a modificar:\n1. Libro\n2. CD\n3. DVD\n4. Juego de PlayStation\n";
+    int tipo;
+    cin >> tipo;
+    cin.ignore();
+
+    string tabla;
+    if (tipo == 1) tabla = "Libro";
+    else if (tipo == 2) tabla = "CD";
+    else if (tipo == 3) tabla = "DVD";
+    else if (tipo == 4) tabla = "JuegoPlayStation";
+    else {
+        cout << "Tipo de producto no válido.\n";
+        return;
+    }
+
+    string consulta = "SELECT * FROM " + tabla;
+    MYSQL_RES* resultado = gestor.ejecutarConsultaSelect(consulta);
+    if (!resultado) return;
+
+    MYSQL_ROW fila;
+    while ((fila = mysql_fetch_row(resultado))) {
+        for (int i = 0; i < mysql_num_fields(resultado); i++) {
+            cout << (fila[i] ? fila[i] : "NULL") << " | ";
+        }
+        cout << endl;
+    }
+    mysql_free_result(resultado);
+
+    cout << "Ingrese el ID del producto a modificar: ";
+    string id;
+    getline(cin, id);
+
+    cout << "Ingrese el nombre del campo a modificar: ";
+    string campo;
+    getline(cin, campo);
+
+    cout << "Ingrese el nuevo valor: ";
+    string nuevoValor;
+    getline(cin, nuevoValor);
+
+    string consultaUpdate;
+    if (campo == "precio" || campo == "paginas" || campo == "canciones" || campo == "duracion" || campo == "edad_Recomendada") {
+        consultaUpdate = "UPDATE " + tabla + " SET " + campo + " = " + nuevoValor + " WHERE product_id = " + id;
+    } else {
+        consultaUpdate = "UPDATE " + tabla + " SET " + campo + " = '" + nuevoValor + "' WHERE product_id = " + id;
+    }
+
+    if (gestor.ejecutarConsulta(consultaUpdate)) {
+        cout << "Producto modificado correctamente.\n";
+    }
+}
+
+void eliminarProducto(GestorBD& gestor) {
+    cout << "Seleccione el tipo de producto a eliminar:\n1. Libro\n2. CD\n3. DVD\n4. Juego de PlayStation\n";
+    int tipo;
+    cin >> tipo;
+    cin.ignore();
+
+    string tabla;
+    if (tipo == 1) tabla = "Libro";
+    else if (tipo == 2) tabla = "CD";
+    else if (tipo == 3) tabla = "DVD";
+    else if (tipo == 4) tabla = "JuegoPlayStation";
+    else {
+        cout << "Tipo de producto no válido.\n";
+        return;
+    }
+
+    string consulta = "SELECT * FROM " + tabla;
+    MYSQL_RES* resultado = gestor.ejecutarConsultaSelect(consulta);
+    if (!resultado) return;
+
+    MYSQL_ROW fila;
+    while ((fila = mysql_fetch_row(resultado))) {
+        for (int i = 0; i < mysql_num_fields(resultado); i++) {
+            cout << (fila[i] ? fila[i] : "NULL") << " | ";
+        }
+        cout << endl;
+    }
+    mysql_free_result(resultado);
+
+    cout << "Ingrese el ID del producto a eliminar: ";
+    string id;
+    getline(cin, id);
+
+    string borrar = "DELETE FROM " + tabla + " WHERE product_id = " + id;
+    if (gestor.ejecutarConsulta(borrar)) {
+        cout << "Producto eliminado correctamente.\n";
+    }
+}
+
 int main() {
     GestorBD gestor;
     int opcion;
     do {
-        cout << "\n1. Agregar producto\n2. Salir\nSeleccione una opci\u00f3n: ";
+        cout << "\n1. Agregar producto\n2. Consultar productos\n3. Modificar producto\n4. Eliminar producto\n5. Salir\nSeleccione una opción: ";
         cin >> opcion;
 
         switch (opcion) {
@@ -214,11 +334,20 @@ int main() {
             agregarProducto(gestor);
             break;
         case 2:
+            consultarProductos(gestor);
+            break;
+        case 3:
+            modificarProducto(gestor);
+            break;
+        case 4:
+            eliminarProducto(gestor);
+            break;
+        case 5:
             cout << "Saliendo del sistema...\n";
             break;
         default:
-            cout << "Opci\u00f3n no v\u00e1lida.\n";
+            cout << "Opción no válida.\n";
         }
-    } while (opcion != 2);
+    } while (opcion != 5);
     return 0;
 }
