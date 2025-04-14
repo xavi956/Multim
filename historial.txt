@@ -1,0 +1,1 @@
+Crear una tabla para cada tipo de prod, que use como fk la id(no autoincremental). La consulta medida en base id de la tabla historial_$tabla$, así si tenemos 4 prestamos para id=2 podemos ver los 4 
