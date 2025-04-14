@@ -338,12 +338,14 @@ void eliminarProducto(GestorBD& gestor) {
         cout << "Producto eliminado correctamente.\n";
     }
 }
+void consultarHistorial(GestorBD& gestor) {
+}
 
 int main() {
     GestorBD gestor;
     int opcion;
     do {
-        cout << "\n1. Agregar producto\n2. Consultar productos\n3. Modificar producto\n4. Eliminar producto\n5. Salir\nSeleccione una opcion: ";
+        cout << "\n1. Agregar producto\n2. Consultar productos\n3. Modificar producto\n4. Eliminar producto \n5.Mostrar prestamos \n6. Salir\nSeleccione una opcion: ";
         cin >> opcion;
 
         switch (opcion) {
@@ -360,6 +362,9 @@ int main() {
             eliminarProducto(gestor);
             break;
         case 5:
+            consultarHistorial(gestor);
+            break;
+        case 6:
             cout << "Saliendo del sistema...\n";
             break;
         default:
