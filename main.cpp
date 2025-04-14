@@ -81,8 +81,8 @@ public:
 
     void mostrarDatos() override {
         cout << "Juego PS: " << titulo << ", Desarrollador: " << desarrollador
-             << ", Plataforma: " << plataforma << ", Edad Recomendada: " << edadRecomendada
-             << ", Precio: " << precio << "€\n";
+            << ", Plataforma: " << plataforma << ", Edad Recomendada: " << edadRecomendada
+            << ", Precio: " << precio << "€\n";
     }
 
     string obtenerTipo() override { return "JuegoPlayStation"; }
@@ -263,8 +263,24 @@ void modificarProducto(GestorBD& gestor) {
     string id;
     getline(cin, id);
 
-    cout << "Ingrese el nombre del campo a modificar: ";
+    cout << "Ingrese el nombre del campo a modificar";
     string campo;
+    if (tipo == 1) {
+        cout << "(titulo, autor, editorial, genero, isbn, paginas, precio: )";
+    }
+    else if (tipo == 2) {
+        cout << "(titulo, artista, genero, canciones, precio: )";
+    }
+    else if (tipo == 3) {
+        cout << "(titulo, director, genero, duracion, precio: )";
+    }
+    else if (tipo == 4) {
+        cout << "(titulo, desarrollador, genero, plataforma, edad_Recomendada, precio: )";
+    }
+    else {
+        cout << "opcion no valida";
+        return;
+    }
     getline(cin, campo);
 
     cout << "Ingrese el nuevo valor: ";
@@ -273,9 +289,10 @@ void modificarProducto(GestorBD& gestor) {
 
     string consultaUpdate;
     if (campo == "precio" || campo == "paginas" || campo == "canciones" || campo == "duracion" || campo == "edad_Recomendada") {
-        consultaUpdate = "UPDATE " + tabla + " SET " + campo + " = " + nuevoValor + " WHERE product_id = " + id;
-    } else {
-        consultaUpdate = "UPDATE " + tabla + " SET " + campo + " = '" + nuevoValor + "' WHERE product_id = " + id;
+        consultaUpdate = "UPDATE " + tabla + " SET " + campo + " = " + nuevoValor + " WHERE id = " + id;
+    }
+    else {
+        consultaUpdate = "UPDATE " + tabla + " SET " + campo + " = '" + nuevoValor + "' WHERE id = " + id;
     }
 
     if (gestor.ejecutarConsulta(consultaUpdate)) {
@@ -316,7 +333,7 @@ void eliminarProducto(GestorBD& gestor) {
     string id;
     getline(cin, id);
 
-    string borrar = "DELETE FROM " + tabla + " WHERE product_id = " + id;
+    string borrar = "DELETE FROM " + tabla + " WHERE id = " + id;
     if (gestor.ejecutarConsulta(borrar)) {
         cout << "Producto eliminado correctamente.\n";
     }
@@ -326,7 +343,7 @@ int main() {
     GestorBD gestor;
     int opcion;
     do {
-        cout << "\n1. Agregar producto\n2. Consultar productos\n3. Modificar producto\n4. Eliminar producto\n5. Salir\nSeleccione una opción: ";
+        cout << "\n1. Agregar producto\n2. Consultar productos\n3. Modificar producto\n4. Eliminar producto\n5. Salir\nSeleccione una opcion: ";
         cin >> opcion;
 
         switch (opcion) {
@@ -346,7 +363,7 @@ int main() {
             cout << "Saliendo del sistema...\n";
             break;
         default:
-            cout << "Opción no válida.\n";
+            cout << "Opcio  n no válida.\n";
         }
     } while (opcion != 5);
     return 0;
